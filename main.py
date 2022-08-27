@@ -2,15 +2,17 @@ import mysql.connector
 import time
 
 
-
+#Função principal
 def con():
+    #Pega o IP do PDV para realizar a conexão ------------------
     print('---------------------------------------')
     ip = input('Qual o ip da maquina?\n')
     print('---------------------------------------')
     print('Deseja voltar o malote ou excluir o malote?\n')
     acao = int(input('1 excluir / 2 voltar\n'))
-
+    #-----------------------------------------------------------
     try:
+        #Realiza a conexão com banco do PDV ---------------------
         conexao = mysql.connector.connect(
 
             host=f"{ip}",
@@ -20,7 +22,8 @@ def con():
         )
 
         cursor = conexao.cursor()
-
+    #-------------------------------------------------------------
+        #Menu ----------------------------------------------------
         def menu():
 
             print('Deseja alterar mais Malotes nesse PDV?\n')
@@ -46,7 +49,9 @@ def con():
                 print('opção invalida')
 
                 time.sleep(3)
+            
                 menu()
+         #----------------------------------------------------------------
 
         def exclui():
             print('---------------------------------------')
