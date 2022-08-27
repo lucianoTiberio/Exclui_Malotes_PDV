@@ -54,6 +54,8 @@ def con():
          #----------------------------------------------------------------
 
         def exclui():
+            #Pega as informações referente ao malote ---------------------
+            
             print('---------------------------------------')
             data = input('Qual a data do malote? (Ano-Mes-Dia)\n')
             print('---------------------------------------')
@@ -66,8 +68,11 @@ def con():
             resultado = cursor.fetchall()  # ler o banco de dados
 
             lista = [tupla[0] for tupla in resultado]
-
-
+            
+            #---------------------------------------------------------------
+            
+            # Se o malote não existir retorna a mensagem--------------------
+            
             if malote not in lista:
 
                 time.sleep(3)
@@ -76,8 +81,10 @@ def con():
                 print("Verifique as informações e tente novamente")
 
                 con()
-
-            else:
+            # ----------------------------------------------------------------------------
+            
+            #Se o malote existir realiza a alteração do status do malote para S (Enviado) ----------
+            else: 
 
                 comando = f"UPDATE T_Sangria SET maloteEnviado = 'S' WHERE numMalote IN ({malote}) AND datafiscal = '{data}'"
 
@@ -89,6 +96,7 @@ def con():
                 time.sleep(2)
 
                 menu()
+            #---------------------------------------------------------------------------------
 
         def volta():
             print('---------------------------------------')
